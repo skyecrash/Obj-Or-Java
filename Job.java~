@@ -1,0 +1,23 @@
+/**
+ * A class that contains information for a job.
+ * @author Lilith Freed
+ */
+public class Job implements Comparable<Job> {
+  
+  /** The three-digit id of the job. */
+  private int id;
+  
+  /** The earliest time at which the job may be started. */
+  private int earliestStart;
+  
+  /** The latest time at which the job must be complete. */
+  private int deadline;
+  
+  /** The length of time it takes to complete the job. */
+  private int duration;
+  
+  /** The amount of profit to be earned if the job is complete. */
+  private int profit;
+  
+}
+  

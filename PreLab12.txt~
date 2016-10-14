@@ -1,0 +1,43 @@
+Welcome to DrJava.  Working directory is D:\My Documents\Java Shit
+> LLNode listHead = new LLNode<Integer>(1, null);
+> listHead.setNext(new LLNode<Integer>(2, null);
+Invalid top level statement
+> listHead.setNext(new LLNode<Integer>(2, null));
+> listHead.setNext().setNext(new LLNode<Integer>(3, null));
+Static Error: No method in raw LLNode with name 'setNext' matches this invocation
+    Arguments: ()
+    Candidate signatures: void setNext(raw LLNode)
+> listHead.setNext(new LLNode<Integer>(2, null)).setNext(new LLNode<Integer>(3, null));
+Static Error: No method in void has name 'setNext'
+> listHead.getNext().setNext(new LLNode<Integer>(3, null));
+> listHead.getElement()
+1
+> listHead.getNext().getElement()
+2
+> listHead.getNext().getNext().getElement()
+3
+> listHead.getNext().getNext().getNext()
+null
+> int i = 0;
+> LLNode list = new LLNode<Integer>(1, null);
+> int i = 1;
+> LLNode listHead = new LLNode<Integer>(i, null);
+> LLNode nodeptr = listHead;
+> while(++i <= 3) {
+nodeptr = listHead.getNext();
+nodeptr = new LLNode<Integer>(i, null);
+}
+> listHead.getElement()
+1
+> listHead.getNext().getElement()
+java.lang.NullPointerException
+> int i = 1;
+> LLNode listHead = new LLNode<Integer>(i, null);
+> LLNode nodeptr = listHead;
+> while(++i <= 3) {
+nodeptr.setNext(new LLNode<Integer>(i, null));
+listHead.setNext(nodeptr.getNext());
+nodeptr = listHead.getNext;
+}
+Static Error: No field in raw LLNode has name 'getNext'
+> 

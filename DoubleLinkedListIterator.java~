@@ -1,0 +1,66 @@
+import java.util.Iterator;
+
+/** 
+ * An iterator for the double linked list class.
+ */
+public class DoubleLinkedListIterator<T> implements Iterator<T> {
+  
+  /** Stores the current node in the iteration. */
+  private DLNode<T> nodeptr;
+  
+  /** Stores the double linked list. */
+  private DoubleLinkedList<T> list;
+ 
+  /**
+   * Creates the iterator.
+   * @param firstNode the first node that will be accessed in the iteration
+   */
+  public DoubleLinkedListIterator(DoubleLinkedList<T> list) {
+    this.list = list;
+    nodeptr = list.getFront();
+  }
+  
+  /**
+   * Getter for list.
+   */
+  public DoubleLinkedList<T> getList() {
+    return list;
+  }
+  
+  /** 
+   * Returns true if there are still more elements in the run through the list
+   * @returns true if there are more elements
+   */
+  public boolean hasNext() {
+    return nodeptr != null;
+  }
+  
+  /** Each time next is called, the next element of the list, in order, is returned.
+    * @return the next element in this traversal of the list
+    */
+  public T next() {
+    T element = nodeptr.getElement();
+    nodeptr = nodeptr.getNext();
+    return element;
+  }
+  
+  /**
+   * Remove the node of the element that was just returned by next.
+   */
+  public void remove() throws IllegalStateException {
+    if(nodeptr.getPrevious() == null) {
+      throw new IllegalStateException();
+    }
+    if(nodeptr.getPrevious().getPrevious() == null) {
+      list.removeFromFront();
+    }
+    else if(!hasNext()) {
+      list.removeFromBack();
+    }
+    else {
+      nodeptr.setPrevious(nodeptr.getPrevious().getPrevious());
+      nodeptr.getPrevious().setNext(nodeptr);
+    }
+  }
+    
+}

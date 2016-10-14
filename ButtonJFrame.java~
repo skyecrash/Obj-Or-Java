@@ -1,0 +1,22 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+/** A window with one button. 
+ *  - your names go here -
+ */
+public class ButtonJFrame extends JFrame {
+
+  /** My button. */
+  private JButton b1;
+
+  /** Create one button in the center. */
+  public ButtonJFrame() {
+    b1 = new JButton("Click me");
+
+    Container c = this.getContentPane();
+    c.add(this.b1, "Center");
+
+    this.pack();
+  }
+}

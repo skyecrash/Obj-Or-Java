@@ -1,0 +1,9 @@
+import java.util.*;
+
+/**
+ * A class to represent a CompoundJob.
+ * @author Lilith Freed
+ */
+public class CompoundJob extends Job {
+  
+  /** The list of SubJobs

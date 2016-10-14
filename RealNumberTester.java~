@@ -1,0 +1,12 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+
+/** Test the RealNumber class.
+  * @author Lilith Freed */
+public class RealNumberTester {
+  
+  /** 
+   * Test the first constructor. 
+   */
+}
+  

@@ -1,0 +1,11 @@
+
+/** A class that allows you to be the artist you've always dreamed of.
+  * @author Lilith Freed.
+  */
+public class Painter extends JFrame {
+  
+  /** Space to store glorious work of art. */
+  private Canvas canvas;
+  
+  public Painter() {
+    

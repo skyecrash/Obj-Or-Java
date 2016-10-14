@@ -1,0 +1,19 @@
+Welcome to DrJava.  Working directory is D:\My Documents\Java Shit
+> LLNode listHead = new LLNode<Integer>(1, null);
+> listHead.setNext(new LLNode<Integer>(2, null));
+> listHead.getNext().setNext(new LLNode<Integer>(3, null));
+> listHead.getElement()
+1
+> listHead.getNext().getElement()
+2
+> listHead.getNext().getNext().getElement()
+3
+> listHead.getNext().getNext().getNext()
+null
+> LLNode<Integer> nodeptr;
+> LLNode<Integer> listHead;
+> for(int i = 0; i < 3; i++) {
+nodeptr = listHead.getNext();
+listHead.setNext(new LLNode<Integer>(i + 1, nodeptr));
+}
+java.lang.NullPointerException

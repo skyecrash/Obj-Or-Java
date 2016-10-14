@@ -1,0 +1,155 @@
+ /** A class that represents an arbitrary number in decimal notation.
+  * @author Lilith Freed
+  */
+public class RealNumber {
+  
+  /** Number of digits to right of decimal point. */
+  private int precision;
+  
+  /** Boolean that indicates a negative value */
+  private boolean isNegative;
+  
+  /** An array storing all the digits of the real number. */
+  private byte[] data;
+  
+  /** A constructor that takes a byte[] array as the source of data.
+    * @param precision The number of places to the right of the decimal.
+    * @param isNegative A boolean that indicates whether or not the number is negative.
+    * @param data The array of data that contains the number.
+    */
+  public RealNumber(int precision, boolean isNegative, byte[] data) {
+    this.isNegative = isNegative;
+    
+    /* If precision is negative, make it positive. */
+    if(precision < 0) {
+      precision = -1 * precision;
+    } 
+    this.precision = precision;
+    
+    /* If the precision is longer than the data array,
+     * make a new array of correct length and copy data. */
+    if(precision > data.length) {
+      this.data = transposeData(data, precision);
+    } else {
+      this.data = data;
+    }
+  
+  }
+  
+  /** A constructor that takes a String object as the source of data.
+    * @param precision The number of places to the right of the decimal.
+    * @param value The number in String format.
+    * @exception NumberFormatException Will throw this exception if user tries to input a non-number String.
+    */
+  public RealNumber(int precision, String value) throws NumberFormatException {
+    /* Error handling to catch improper number format. */
+    try {
+      Double.parseDouble(value);
+    }
+    catch(NumberFormatException e) {
+      throw e;
+    }
+    
+    /* If precision is negative, make it positive. */
+    if(precision < 0) {
+      precision = -1 * precision;
+    } 
+    this.precision = precision;
+    
+    /* Checks string for negative value. */
+    if(value.charAt(0) == '-') {
+      this.isNegative = true;
+    } else {
+      this.isNegative = false;
+    }
+    
+    this.data = transposeData(value, precision);
+
+  }
+  
+  /** Transpose data with a byte[] array.
+    * @param data The array to be transposed.
+    * @param precision The precision of the array of data.
+    * @return The new array with all data. 
+    */
+  private byte[] transposeData(byte[] data, int precision) {
+    byte[] newData = new byte[precision];
+    
+    /* Copies the old data into new array. */
+    for(int i = 0; i < data.length; i++) {
+      newData[i] = data[i];
+    }
+    
+    /* Copies in the zeros to the precision. */
+    for(int i = data.length - 1; i < precision; i++) {
+      newData[i] = (byte)0;
+    }
+    
+    return newData;
+  }
+  
+  /** Transpose data with a String object.
+    * @param value The String to be transposed.
+    * @param precision The precision of the array of data
+    * @return The new array with all data. 
+    */
+  private byte[] transposeData(String value, int precision) {
+    byte[] data;
+    
+    int leftPlaces = 0; // stores number of places left of the decimal
+    /* Detemining how many places are to the left of the decimal. */
+    for(int i = 0; value.charAt(i) != '.' &&i < value.length(); i++) {
+      if(Character.isDigit(value.charAt(i))) {
+        leftPlaces++;
+      }
+    }
+    
+    data = new byte[leftPlaces + precision]; // array with correct length
+    
+    int arrayIndex = data.length - 1; // keeps track of what data has been entered into the array
+    
+    /* Parses the data from the String into the array. */
+    for(int i = 0; i < value.length() && arrayIndex >= 0; i++) {
+      /* If the string is not at its last character, but its the final digit in the array */
+      if(i != value.length() - 1 && arrayIndex == 0) {
+        /* All these ifs test for rounding in the case of truncating.*/
+        if(Character.digit(value.charAt(i + 1), 10) < 5) {
+          data[arrayIndex] = (byte)(Character.digit(value.charAt(i), 10));
+        } else if(Character.digit(value.charAt(i + 1), 10) >= 5 && Character.digit(value.charAt(i), 10) == 9) {
+          data[arrayIndex] = (byte)0;
+          data[arrayIndex + 1] = (byte)(Character.digit(value.charAt(i-1) + 1, 10));
+        } else {
+          data[arrayIndex] = (byte)(Character.digit(value.charAt(i) + 1, 10));
+        }
+        arrayIndex--;
+      } else if(Character.isDigit(value.charAt(i))) {
+        data[arrayIndex] = (byte)Character.digit(value.charAt(i), 10);
+        arrayIndex--;
+      }
+    }
+    
+    return data;
+  }
+ 
+  /** Returns the precision of the number.
+    * @return The precision of the RealNumber. 
+    */
+  public int getPrecision() {
+    return this.precision;
+  }
+  
+  /** Returns the data array of the number.
+    * @return The data array associated with the RealNumber. */
+  public byte[] getData() {
+    return this.data;
+  }
+  
+  /** Returns true if RealNumber is negative, and false otherwise.
+    * @return The boolean that indicates whether RealNumber is true or false. */
+  public boolean isNegative() {
+    return this.isNegative;
+  }
+  
+  
+  
+}

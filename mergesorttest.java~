@@ -1,0 +1,63 @@
+
+
+private static <S extends Comparable<? super S>> 
+  LLNode<S> merge(LLNode<S> list1, LLNode<S> list2) {
+  
+  LLNode<S> newlist;
+  LLNode<S> endptr;
+  
+  if(list1.getElement().compareTo(list2.getElement()) < 0) {
+    newlist = list1;
+    list1 = list1.getNext();
+  }
+  else {
+    newlist = list2;
+    list2 = list2.getNext();
+  }
+  endptr = newlist;
+  
+  while(list1 != null && list2 != null) {
+    if (list1.getElement().compareTo(list2.getElement()) < 0) {
+      endptr.setNext(list1);
+      list1 = list1.getNext();
+    }
+    else {
+      endptr.setNext(list2);
+      list2 = list2.getNext();
+    }
+    endptr = endptr.getNext();
+  }
+  
+  if(list1 != null)
+    endptr.setNext(list1);
+  else
+    endptr.setNext(list2);
+}
+
+private static <S> LLNode<S> split(LLNode<S> list1) {
+  LLNode<S> list2 = list1.getNext();
+  LLNode<S> nodeptr = list2;
+  LLNode<S> prevptr = list1;
+  
+  while(nodeptr != null) {
+    prevptr.setNext(nodeptr.getNext());
+    prevptr = nodeptr;
+    nodeptr = nodeptr.getNext();
+  }
+  
+  return list2;
+}
+
+private static <S extends Comparable<? super S>> LLNode<S> mergeSort(LLNode<S> list1) {
+  if (list1.getNext() == null) {
+    return list1;
+  }
+  LLNode<S> list2 = split(list1);
+  list1 = mergeSort(list1);
+  list2 = mergeSort(list2);
+  return merge(list1, list2);
+}
+
+public static <S extends Comparable<? super S>> void mergeSort(LinkedList<S> list) {
+  list.setFirst(mergeSort(list.getFirst()));
+}

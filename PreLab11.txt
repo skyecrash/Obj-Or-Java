@@ -1,0 +1,26 @@
+Welcome to DrJava.  Working directory is D:\My Documents\Java Shit
+> import javax.swing.*
+> JFrame j1 = new JFrame();
+> import java.awt.*;
+Container c = j1.getContentPane()
+> import java.awt.event.*
+> JButton button1 = new JButton("Button 1");
+> JButton button2 = new JButton("Button 2");
+> button1.addActionListener(new ActionListener() {
+@Override
+public void actionPerformed(ActionEvent e) {
+System.out.println("You clicked Button 1.");
+}
+});
+> button2.addActionListener(new ActionListener() {
+@Override
+public void actionPerformed(ActionEvent e) {
+System.out.println("You clicked Button 2.");
+}
+});
+> c.add(button1, "North")
+> c.add(button2, "South")
+> j1.pack()
+> j1.setVisible(true)
+You clicked Button 1.
+You clicked Button 2.

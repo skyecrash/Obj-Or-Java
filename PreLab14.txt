@@ -1,0 +1,87 @@
+Welcome to DrJava.  Working directory is D:\My Documents\Java Shit
+> String s = "hello";
+> Class cls = s.getClass()
+> Class<?> cls = s.getClass()
+> import java.lang.reflect.*
+> Method[] methods = cls.getDeclaredMethods()
+> for(int i = 0; i < methods.length; i++) {
+System.out.println(methods[i].getName());
+}
+equals
+toString
+hashCode
+compareTo
+compareTo
+indexOf
+indexOf
+indexOf
+indexOf
+indexOf
+indexOf
+valueOf
+valueOf
+valueOf
+valueOf
+valueOf
+valueOf
+valueOf
+valueOf
+valueOf
+charAt
+checkBounds
+codePointAt
+codePointBefore
+codePointCount
+compareToIgnoreCase
+concat
+contains
+contentEquals
+contentEquals
+copyValueOf
+copyValueOf
+endsWith
+equalsIgnoreCase
+format
+format
+getBytes
+getBytes
+getBytes
+getBytes
+getChars
+getChars
+indexOfSupplementary
+intern
+isEmpty
+join
+join
+lastIndexOf
+lastIndexOf
+lastIndexOf
+lastIndexOf
+lastIndexOf
+lastIndexOf
+lastIndexOfSupplementary
+length
+matches
+nonSyncContentEquals
+offsetByCodePoints
+regionMatches
+regionMatches
+replace
+replace
+replaceAll
+replaceFirst
+split
+split
+startsWith
+startsWith
+subSequence
+substring
+substring
+toCharArray
+toLowerCase
+toLowerCase
+toUpperCase
+toUpperCase
+trim
+> 

@@ -1,0 +1,267 @@
+import javax.swing.*;
+
+/**
+ * Class for the homework 2 assignment.
+ * @author Lilith Freed, laf70
+ */
+public class HW2 {
+    
+  /**
+   * Private helper method to determine what index should be set for hiddenInString since it KEEPS GIVING ME ERRORS AAAAAAAA
+   * @param s1 The String to be used for calculating index.
+   * @param k If negative, index is set to end of string minus k. Is set to 0 otherwise.
+   * @return The int value of what index should be set to.
+   */
+  private static int calculateIndex(String s1, int k) {
+    if(k < 0) {
+      return s1.length() - 1;
+    }
+    return 0;
+  }
+  
+  /**
+   * Method replaces first x occurences of char c1 in String s1 with char c2.
+   * @param s1 The String to be edited.
+   * @param c1 The character to be replaced.
+   * @param c2 The character that replaces c1.
+   * @param x The number of occurences of c1 that c2 should replace.
+   * @return The String with all necessary edits.
+   */
+  public static String replaceFirstK(String s1, char c1, char c2, int x) {
+    StringBuilder result = new StringBuilder();
+    int count = 0; // keeps track of how many replacements are made
+    /* Loop traverses s1 and replaces first x occurences of c1 with c2
+     * PreCond: s1.length() >= 1b
+     * Goal: result stores String s1 with x replacements of c1 with c2 */
+    for(int i = 0; i < s1.length(); i++) {
+      // char at index matches c1 and number of replacements has not been reached
+      if(s1.charAt(i) == c1 && count < x) {
+        result.append(c2);
+        count = count + 1;
+      } else {
+        result.append(s1.charAt(i));
+      }
+    }
+    return result.toString();
+  }
+  
+  /**
+   * Method creates a String containing all characters in order from the first to second char.
+   * @param c1 The starting character.
+   * @param c2 The end character.
+   * @return The String with all characters, including the starting character and end character.
+   */
+  public static String allChars(char c1, char c2) {
+    StringBuilder result = new StringBuilder();
+    // if c1 sequentially comes before c2
+    if((int)c1 <= (int)c2) {
+      /* Loop increments through each int value corresponding 
+       * to a char from c1 to c2 (inclusive.)
+       * Goal: result stores "c1..c2"
+       * Subgoal: result stores "c1..i-1" */
+      for(int i = (int)c1; i <= (int)c2; i = i + 1) {
+        result.append((char)i);
+      }
+    } else {
+      /* Loop increments through each int value corresponding 
+       * to a char from c1 to max value of char (inclusive.)
+       * Goal: result stores "c1..max value char"
+       * Subgoal: result stores "c1..i-1" */
+      for(int i = (int)c1; i <= 65535; i = i + 1) {
+        result.append((char)i);
+      }
+      /* Loop increments through each int value corresponding 
+       * to a char from c1 to c2 (inclusive.)
+       * Goal: result stores "c1..c2"
+       * Subgoal: result stores "c1..i-1" */
+      for(int i = 0; i <= (int) c2; i = i + 1) {
+        result.append((char)i);
+      }
+    }
+    return result.toString();
+  }
+    
+  
+  /**
+   * Method replace characters in first string not found in second string with the underscore. '_'
+   * @param s1 The String to be edited.
+   * @param s2 The String containing characters to be checked for in the first String.
+   * @return The String with all necessary characters replaced with underscores.
+   */
+  public static String showCharOfString(String s1, String s2) {
+    StringBuilder result = new StringBuilder();
+    boolean isMatch; // flag to indicate if a character match has been made
+    // if there are characters to check for in s2, run the loop
+    if(s2.length() >= 1) {
+      /* Loop traverses s1 until end of string is reached.
+       * Goal: result stores s1 with '_' replacing chars not found in s2 */
+      for(int i = 0; i < s1.length(); i = i + 1) {
+        isMatch = false; 
+        /* Loop traverses s2 for char s1 until end of s2 is reached OR
+         * charAt(i) matches char in s2.
+         * PreCond: s2.length() > 1
+         * Goal: If j == s2.length() - 1 and charAt(i) != j, result stores s1.charAt(i) = '_'
+         *       Otherwise result stores s1.charAt(i). */
+        for(int j = 0; j < s2.length() && isMatch == false; j = j + 1) {
+          if(s1.charAt(i) == s2.charAt(j)) {
+            result.append(s1.charAt(i));
+            isMatch = true;
+          } else if(j == s2.length() - 1) { // will only append '_' if all characters have been checked in s2
+          result.append('_');
+          }
+        }
+      }
+    } else {
+      for(int i = 0; i < s1.length(); i++) {
+        result.append('_');
+      }
+    }
+    return result.toString();
+  }
+  
+  /**
+   * Method plays a game of hangman.
+   * @param word The String that the player must guess.
+   * @param maxGuesses The number of bad guesses a player is allowed.
+   * @return A boolean that is true if player wins and false if player loses.
+   */
+  public static boolean hangman(String word, int maxGuesses) {
+    StringBuilder playerGuess = new StringBuilder();
+    int badGuess = 0;
+    String letterGuess;
+    boolean winFlag = false;
+    /* Loop continues to play game of hangman while maxGuesses has not been exceeded
+     * and the player has not guessed all the letters.
+     * Goal: If player guesses all letters, winFlag is set to true. */
+    while(badGuess <= maxGuesses && !winFlag) {
+      System.out.println(showCharOfString(word, playerGuess.toString()) + ' ' + badGuess + " bad guesses");
+      letterGuess = JOptionPane.showInputDialog("Guess the letter!");
+      // if the player tries to guess more than one letter, give an error message
+      if(letterGuess.length() > 1) {
+        System.out.println("Oops! You input more than one letter. Try again!");
+      // if the letter is found in string of player's guesses, do nothing
+      } else if(hiddenInString(playerGuess.toString(), letterGuess, 1)) {
+        ;
+      // if the lettter is not in word, increment bad guesses
+      } else if(!hiddenInString(word, letterGuess, 1)) {
+        badGuess++;
+        playerGuess.append(letterGuess); 
+      } else {
+        playerGuess.append(letterGuess);
+        // if there are NO underscores in the showChar result, set win condition to true
+        if(!hiddenInString(showCharOfString(word, playerGuess.toString()), "_", 1)) {
+          winFlag = true;
+        }
+      } 
+    }
+    if(winFlag) {
+      System.out.println(word + " - You win!");
+      return true;
+    }
+    return false;
+  }
+  
+  /**
+   * Method searches for second string inside of first, reading every kth char.
+   * @param s1 The String to be searched.
+   * @param s2 The sequence for which the method is searching.
+   * @param kTh String should be read every "k"th character for match to s2.
+   * @return True if String is found, false otherwise.
+   */
+  public static boolean hiddenInString(String s1, String s2, int kTh) {
+    // a series of conditions that will always return false
+    if (s2.length() > s1.length() || kTh == 0 || s1.length() == 0) {
+      ;
+    // if you gotta check for a sequence of characters, use this loop
+    } else if(s2.length() > 1) {
+      int i = calculateIndex(s1, kTh); // index for s1, starts at back if k is negative
+      int j; // index for s2
+      boolean noMatch; // flag to be raised when a match is not found between chars in s1 and s2
+      /* Loop traverses s1 until all start points have been 
+       * checked to see if they yield s2 when skipping every kth char.
+       * Goal: returns true if match for s2 is found. Otherwise, s1 is traversed and loop exits. */
+      while(i >= 0 && i < s1.length()) {
+        noMatch = false;
+        j = 0;
+        /* Loop traverses s1 at given start point every kth char 
+         * looking for a match, stops if a mismatch is found.
+         * PreCond: s2.length() > 1
+         * Goal: returns true if j == s2.length() - 1 and s1.charAt(index) == s2.charAt(j). */
+        for(int index = i; index >= 0 && index < s1.length() && noMatch == false; index = index + kTh) {
+          if(s1.charAt(index) == s2.charAt(j) && j == s2.length() - 1) { // if char matches and it's the last char in s2
+            return true;
+          } else if(s1.charAt(index) == s2.charAt(j)) { 
+            j++;
+          } else {
+            noMatch = true;
+          }
+        }
+        if(kTh < 0) {
+          i--;
+        } else {
+          i++;
+        }
+      }
+    // if you only have to check for one character, use this loop
+    } else if (s2.length() == 1) {
+      /* Loop traverses entirety of s1 checking for char in s2.
+       * PreCond: s2.length() == 1
+       * Goal: returns true if s1.charAt(i) == s2.charAt(0) */
+      for(int i = 0; i < s1.length(); i++) {
+        if(s1.charAt(i) == s2.charAt(0)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  
+/**
+   * Method capitalizes any word that contains any capitalized letter.
+   * A word is a sequence of english alphabet letters, including the hyphen char.
+   * @param s1 String to be capitalized if necessary.
+   * @return The capitalized String.
+   */
+  public static String capitalizeWords(String s1) {
+    StringBuilder result = new StringBuilder();
+    int index = 0; // index for main string
+    boolean capFlag; // flag for a capital letter found
+    int j; // index for determining end point of a word
+    /* Loop traverses s1 until entire string has been read.
+     * Goal: result stores s1 with all words with capital english
+     *       letters fully capitalized. */
+    while(index < s1.length()) {
+      capFlag = false;
+      j = index; // sets beginning of potential word to current index
+      /* Loop runs until it encounters a char that is not a 
+       * valid english letter (upper or lower case) or a hyphen,
+       * or it reaches the end of String s1.
+       * Goal: j stores the index of the end of the "word" */
+      while(((s1.charAt(j) >= 65 && s1.charAt(j) <= 90) || 
+             (s1.charAt(j) >= 97 && s1.charAt(j) <= 122) || s1.charAt(j) == '-') 
+              && j < s1.length() - 1) 
+      {
+        if(s1.charAt(j) >= 65 && s1.charAt(j) <= 90) {
+          capFlag = true;
+        }
+        j++;
+      }
+      /* Loop traverses s1 from the beginning of the "word" (index) 
+       * to the end of the word (j) and appends correct chars.
+       * Goal: result stores s1.charAt(index)..s1.charAt(j) */
+      for(int k = index; k <= j; k++) {
+        /* If there was a capital letter found in the word, and the char
+         * is a lowercase english letter, append its corresponding capital letter. */
+        if(capFlag == true && s1.charAt(k) >= 97 && s1.charAt(k) <= 122) {
+          result.append((char)(s1.charAt(k) - 32));
+        } else {
+          result.append(s1.charAt(k));
+        }
+      }
+      index = j; // sets end of word to current index
+      index++; // assumes at least one space or other non-applicable char
+    }
+    return result.toString();
+  }
+      
+}

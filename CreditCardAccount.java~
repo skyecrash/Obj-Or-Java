@@ -1,0 +1,43 @@
+// Lilith Freed, laf70
+
+/* HEY LILITH MAKE SURE YOU'RE JUST USING THE FLAG VARIABLE FOR IF STATEMENTS YOU MADE THAT MISTAKE BEFORE */
+
+public class CreditCardAccount {
+  
+  /* credit limit */  
+  private int credLim;
+  
+  /* interest rate */
+  private double intRate;
+  
+  /* minimum monthly payment */
+  private int minMonthPayment;
+  
+  /* late payment penalty */
+  private int latePayPenalty;
+  
+  /* card balance */
+  private double cardBal;
+  
+  /* payment to pay month off in full */
+  private double monthPayment;
+  
+  /* interest charged for month */
+  private double intCharge;
+  
+  /* paid-in-full flag */
+  private boolean paidInFull;
+  
+  /* Constructor for default values */
+  public CreditCardAccount() {
+    this.credLim = 500;
+    this.intRate = 4.0;
+    this.minMonthPayment = 125;
+    this.latePayPenalty = 50;
+    this.cardBal = 0.0;
+    this.monthPayment = 0.0;
+  } 
+  
+}
+  
+  

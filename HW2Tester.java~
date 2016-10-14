@@ -1,0 +1,82 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+
+/**
+ * Test class HW2.
+ */
+public class HW2Tester {
+  
+  /**
+   * Test the replaceFirstK method.
+   */
+  @Test
+  public void testReplaceFirstK() { 
+    
+    String s = new StringBuilder("").toString();
+    
+    // test 0
+    assertEquals("Does not return empty string", s, HW2.replaceFirstK("", 'a', 'b', 1)); // 0 chars to read or replace
+    s = new StringBuilder("abc").toString();
+    assertEquals("Does not return original string", s, HW2.replaceFirstK("abc", 'a', 'b', 0)); // replacement value is 0
+    assertEquals("Does not return original string", s, HW2.replaceFirstK("abc", 'd', 'a', 1)); // no char match to replace 
+    
+    // test 1
+    s = new StringBuilder("aba").toString();
+    assertEquals("Does not return correct string", s, HW2.replaceFirstK("abc", 'c', 'a', 1)); // replacing one char with x = 1, Test Last
+    assertEquals("Does not return correct string", s, HW2.replaceFirstK("abc", 'c', 'a', 2)); // replacing one char with x > 1
+    s = new StringBuilder("cbccba").toString();
+    assertEquals("Does not return correct string", s, HW2.replaceFirstK("abccba", 'a', 'c', 1)); // replacing one char with x = 1 and char appearing more than once, Test First
+    
+    // test many
+    s = new StringBuilder("adccda").toString();
+    assertEquals("Does not return correct string", s, HW2.replaceFirstK("abccba", 'b', 'd', 2)); // replacing more than one char with x equaling the number of times char appears, Test Middle
+    s = new StringBuilder("dbccbd").toString();
+    assertEquals("Does not return correct string", s, HW2.replaceFirstK("abccba", 'a', 'd', 3)); // replacing more than one char wuth x being greater than the number of occurrences
+  }
+  
+  /**
+   * Test the allChars method.
+   */
+  @Test
+  public void testAllChars() {
+    String s = new StringBuilder().toString();
+    
+    // test 1
+    s = new StringBuilder("d").toString();
+    assertEquals("Does not return correct string", s, HW2.allChars('d', 'd'));
+    
+    // test many
+    s = new StringBuilder("defghijklmnop").toString();
+    assertEquals("Does not return correct string", s, HW2.allChars('d', 'p'));
+    
+  }
+  
+  /**
+   * Test the showCharOfString method.
+   */
+  @Test
+  public void testShowCharOfString() {
+    String s = new StringBuilder().toString();
+    
+    // test 0
+    s = new StringBuilder("").toString();
+    assertEquals("Does not return empty string", s, HW2.showCharOfString("", ""));
+    assertEquals("Does not return empty string", s, HW2.showCharOfString("", "test"));
+    s = new StringBuilder("test").toString();
+    assertEquals("Does not return original string", s, HW2.showCharOfString("test", ""));
+    s = new StringBuilder("a").toString();
+    assertEquals("Does not return original string", s, HW2.showCharOfString("a", "a"));
+    
+    // test 1
+    s = new StringBuilder("_").toString();
+    assertEquals("Does not return correct string", s, HW2.showCharOfString("a", "b")); // test first
+    
+    // test many
+    s = new StringBuilder("t__s _s").toString();
+    assertEquals("Does not return correct string", s, HW2.showCharOfString("this is", "a test")); // test middle
+    s = new StringBuilder("d____do__").toString();
+    assertEquals("Does not return correct string", s, HW2.showCharOfString("ding dong", "bod")); // test last
+  }
+    
+    
+}

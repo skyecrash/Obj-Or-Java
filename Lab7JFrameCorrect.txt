@@ -1,0 +1,34 @@
+/* Lilith Freed */
+
+  Interactions with the file input:
+    
+    > import java.io.FileReader; // auto-import
+FileReader fr1 = new FileReader("D:\\My Documents\\MATLAB\\votes.txt")
+> fr1.read()
+49
+> (char)fr1.read()
+'2'
+> (char)fr1.read()
+'3'
+> (char)fr1.read()
+'4'
+> (char)fr1.read()
+'5'
+> (char)fr1.read()
+'6'
+> (char)fr1.read()
+'7'
+> (char)fr1.read()
+'8'
+> (char)fr1.read()
+'9'
+> (char)fr1.read()
+' '
+  
+  > import java.io.BufferedReader; // auto-import
+BufferedReader br = new BufferedReader(fr1)
+> br.readLine()
+"rent"
+> br.readLine()
+null
+> 

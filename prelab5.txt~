@@ -1,0 +1,58 @@
+Welcome to DrJava.  Working directory is C:\Users\Lilith\Documents\Java Shit
+> String compareValues(int x, int y) {
+if(x > y) {
+return Int.parseInt(x) + "is larger than" + Int.parseInt(y);
+} else if(y > x) {
+return Int.parseInt(y) + "is larger than" + Int.parseInt(x);
+} else {
+return "the two values are equal"; }
+}
+Static Error: Undefined name 'Int'
+> import javax.swing.*
+> String compareValues(int x, int y) {
+if(x > y) {
+return Int.parseInt(x) + "is larger than" + Int.parseInt(y);
+} else if(y > x) {
+return Int.parseInt(y) + "is larger than" + Int.parseInt(x);
+} else {
+return "the two values are equal"; }
+}
+Static Error: Undefined name 'Int'
+> String compareValues(int x, int y) {
+if(x > y) {
+return Integer.parseInt(x) + "is larger than" + Integer.parseInt(y);
+} else if(y > x) {
+return Integer.parseInt(y) + "is larger than" + Integer.parseInt(x);
+} else {
+return "the two values are equal"; }
+}
+Static Error: No method in static Integer with name 'parseInt' matches this invocation
+    Arguments: (int)
+    Candidate signatures: 
+        int parseInt(String)
+        int parseInt(String, int)
+> String compareValues(int x, int y) {
+if(x > y) {
+return Integer.toString(x) + "is larger than" + Integer.toString(y);
+} else if(y > x) {
+return Integer.toString(y) + "is larger than" + Integer.toString(x);
+} else {
+return "the two values are equal"; }
+}
+> compareValues(5, 6)
+"6is larger than5"
+> String compareValues(int x, int y) {
+if(x > y) {
+return Integer.toString(x) + " is larger than " + Integer.toString(y);
+} else if(y > x) {
+return Integer.toString(y) + " is larger than " + Integer.toString(x);
+} else {
+return "the two values are equal"; }
+}
+> compareValues(5, 6)
+"6 is larger than 5"
+> compareValues(7, 4)
+"7 is larger than 4"
+> compareValues(2, 2)
+"the two values are equal"
+> 

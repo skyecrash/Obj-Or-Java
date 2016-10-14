@@ -1,0 +1,14 @@
+> String compareValues(int x, int y) {
+if(x > y) {
+return Integer.toString(x) + " is larger than " + Integer.toString(y);
+} else if(y > x) {
+return Integer.toString(y) + " is larger than " + Integer.toString(x);
+} else {
+return "the two values are equal"; }
+}
+> compareValues(5, 6)
+"6 is larger than 5"
+> compareValues(7, 4)
+"7 is larger than 4"
+> compareValues(2, 2)
+"the two values are equal"

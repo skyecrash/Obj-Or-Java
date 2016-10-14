@@ -1,0 +1,9 @@
+/**
+ * Class for the object SparseMatrix
+ * @author Lilith Freed, laf70
+ */
+public class SparseMatrix {
+
+  // Constructor for Sparse Matrix
+  SparseMatrix(double[] nonZeroValues, int[] columnPositions, int[] rowSt
+

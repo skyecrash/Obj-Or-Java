@@ -1,0 +1,17 @@
+if(s1.charAt(i) == s2.charAt(j)) {
+        // traverses s1, going by every kth character
+        while(j < s2.length() && i >= 0 && i < s1.length()) {
+          if(s1.charAt(i) == s2.charAt(j) && j == s2.length() - 1) { // if char matches and it's the last char in s2
+            return true;
+          } else if(s1.charAt(i) == s2.charAt(j)) { 
+            i = i + kTh;
+            j = j + 1;
+          } else {
+            i = i + kTh;
+          }
+        }
+      } else if(kTh < 0) { // if kTh is negative, traverse string backwards until character match is found
+        i = i - 1;
+      } else { // traverse string until character match is found
+        i = i + 1;
+      }

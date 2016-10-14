@@ -1,0 +1,7 @@
+// Lilith Freed, laf70
+
+import javax.swing.JFrame;
+
+public class MaxWindow extends JFrame {
+  
+}

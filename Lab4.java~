@@ -1,0 +1,14 @@
+// Lilith Freed, laf70
+
+import javax.swing.*;
+
+public class Lab4 {
+  
+  /** Prompt the user for two integers and return the sum. */
+  public static int addIntegers() {
+    x = JOptionPane.showInputDialog("Type the first integer.");
+    y = JOptionPane.showInputDialog("Type the second integer.");
+    return x + y;
+  }
+  
+}

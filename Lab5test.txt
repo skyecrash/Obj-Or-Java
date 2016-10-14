@@ -1,0 +1,24 @@
+> Lab5.isDayLightSavings(1, 2, 3, 4)
+false
+> Lab5.isDayLightSavings(2, 2, 3, 4)
+false
+> Lab5.isDayLightSavings(3, 2, 3, 4)
+false
+> Lab5.isDayLightSavings(4, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(5, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(6, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(7, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(8, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(9, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(10, 2, 3, 4)
+true
+> Lab5.isDayLightSavings(11, 2, 3, 4)
+false
+> Lab5.isDayLightSavings(12, 2, 3, 4)
+false
